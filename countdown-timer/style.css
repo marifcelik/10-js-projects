@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background: url('./cbg.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-top: 15rem;
+}
+
+p {
+    font-size: 6rem;
+    line-height: 1;
+    margin: 10px 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+[class*="-c"] {
+    text-align: center;
+}
+
+[class*="-c"] span {
+    font-size: 1.5rem;
+}
