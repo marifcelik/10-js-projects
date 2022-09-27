@@ -1,0 +1,190 @@
+:root {
+  --conWidth: 400px;
+  --conHeight: 700px;
+  --textColor: #212636;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: system-ui;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  border: 2px solid #999;
+  width: var(--conWidth);
+  height: var(--conHeight);
+  margin: 10% auto;
+}
+
+header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  padding: 0 20px;
+}
+
+.search-div .icon {
+  cursor: pointer;
+}
+
+.search-div svg {
+  padding: 5px;
+  width: 34px;
+  height: 34px;
+}
+
+.search-div input#searchbar {
+  position: absolute;
+  left: calc((var(--conWidth) / 2) - 120px);
+  top: 20px;
+  border: 1px solid var(--textColor);
+  border-radius: 10px;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition) width;
+}
+
+.search-div input#searchbar.active {
+  width: 230px;
+  height: 20px;
+  padding: 15px;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+nav {
+  position: absolute;
+  top: 0;
+  left: -150px;
+  background-color: #999;
+  height: 100%;
+  width: 70%;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition) opacity, var(--transition) transform, var(--transition) visibility;
+}
+
+nav.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(150px);
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+  width: 100%;
+  height: calc(100% - 70px);
+}
+
+nav ul li {
+  display: inline-block;
+  width: 100%;
+  color: white;
+}
+
+nav ul li button {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  font-size: 22px;
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition) background-color;
+}
+
+nav ul li button:hover {
+  background-color: rgba(223, 212, 212, 0.31);
+}
+
+.logo {
+  color: var(--textColor);
+  transition: var(--transition) visibility, var(--transition) opacity;
+}
+
+.logo.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hamb {
+  display: block;
+  cursor: pointer;
+}
+
+.bar {
+  width: 27px;
+  height: 4px;
+  margin: 5px;
+  border-radius: 2px;
+  transition: var(--transition) all;
+  background-color: var(--textColor);
+}
+
+.hamb.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamb.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(-45deg);
+}
+
+.hamb.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(45deg);
+}
+
+
+.fav-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 150px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  background-color: #e9eaf3;
+}
+
+
+
+.fav-item {
+  width: 110px;
+  height: 110px;
+  border: none;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.fav-item img {
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  border: 2px solid hwb(270 20% 40%);
+}
+
+.fav-item div {
+  height: 10%;
+  font-size: 14px;
+  color: var(--textColor);
+}
