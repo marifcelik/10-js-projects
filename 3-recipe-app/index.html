@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
   <div class="container">
@@ -24,11 +24,7 @@
       </div>
       <nav>
         <ul>
-          <li><button>kategori</button></li>
-          <li><button>kategori</button></li>
-          <li><button>kategori</button></li>
-          <li><button>kategori</button></li>
-          <li><button>kategori</button></li>
+          <li><button>All</button></li>
         </ul>
       </nav>
       <div class="logo">
@@ -42,21 +38,34 @@
     </header>
     <div class="fav-container">
       <div class="fav-item">
-        <img src="" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg/preview" alt="" height="100%">
+        <div>açıklama yazısı</div>
+      </div>
+      <div class="fav-item">
+        <img src="https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg/preview" alt="" height="100%">
+        <div>açıklama yazısı</div>
+      </div>
+      <div class="fav-item">
+        <img src="https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg/preview" alt="" height="100%">
+        <div>açıklama yazısı</div>
+      </div>
+      <div class="fav-item">
+        <img src="https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg/preview" alt="" height="100%">
         <div>açıklama yazısı</div>
       </div>
     </div>
-    <div class="sort-div">
+    <div id="sort-div">
       <select name="sort" id="sort">
-        <option value="a-z">A-Z</option>
-        <option value="z-a">Z_A</option>
+        <option value="a">a-z</option>
+        <option value="z">z-a</option>
       </select>
     </div>
-    <div class="meals">
+    <div id="meals-div">
       <div class="meal">
-        <img src="" alt="">
-        <div class="info">
-
+        <img src="https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg/preview" alt="" class="meal-image"
+          height="100%">
+        <div class="meal-name">
+          Lorem ipsum dolor
         </div>
       </div>
     </div>
