@@ -1,6 +1,6 @@
 import Meal from './Meal.js';
 
-const $hamb = document.querySelector('.hamb');
+window.$hamb = document.querySelector('.hamb');
 const $nav = document.querySelector('nav');
 const $logo = document.querySelector('.logo');
 const $searchSVG = document.querySelector('.search-div .icon');
@@ -24,7 +24,28 @@ export default class Control {
         $favContainer.addEventListener('wheel', e => {
             e.preventDefault();
             $favContainer.scrollBy({ left: e.deltaY < 0 ? -30 : 30 })
-        })
+        });
+    }
+
+    async setFavorites(arr) {
+        for (let meal of arr) {
+            meal = new Meal(meal);
+
+            const favItem = document.createElement('div');
+            favItem.classList.add('fav-item');
+
+            const favImg = document.createElement('img');
+            favImg.setAttribute('src', `${meal.thumb}/preview`);
+            favImg.setAttribute('height', '100%');
+
+            const textDiv = document.createElement('div');
+            textDiv.innerHTML = meal.name;
+
+            favItem.appendChild(favImg);
+            favItem.appendChild(textDiv);
+
+            $favContainer.appendChild(favItem)
+        }
     }
 
     async setCategories(categories) {
@@ -36,7 +57,7 @@ export default class Control {
             let button = document.createElement('button');
             button.innerHTML = category['strCategory'];
             button.id = `category-${i++}`;
-            button.setAttribute('onclick', 'getMealsByCategory(this.innerHTML)')
+            button.setAttribute('onclick', 'getMealsByCategory(this.innerHTML); $hamb.click()')
 
             let li = document.createElement('li');
             li.appendChild(button);
@@ -48,8 +69,8 @@ export default class Control {
     listMeals(data) {
         $mealsContainer.innerHTML = '';
 
-        for (const obj of data) {
-            const meal = new Meal(obj);
+        for (let meal of data) {
+            meal = new Meal(meal);
 
             let mealDiv = document.createElement('div');
             mealDiv.classList.add('meal');

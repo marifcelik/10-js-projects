@@ -14,10 +14,22 @@ export default class Fetcher {
             .catch(err => { throw err })
     }
 
-    async fetchMealDetailsById(id) {
-        return await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    async fetchMealDetailsById(ids) {
+        ids = [...ids];
+        let arr = [];
+        for (const id of ids) {
+            arr.push(await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
             .then(res => res.json())
             .then(res => res['meals'][0])
+            .catch(err => { throw err }))
+        }
+        return arr;
+    }
+
+    async fetchRandom() {
+        return await fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+            .then(res => res.json())
+            .then(obj => obj['meals'][0])
             .catch(err => { throw err })
     }
 }
