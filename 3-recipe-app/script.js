@@ -7,9 +7,17 @@ const fetcher = new Fetcher();
 let categories = await fetcher.fetchCategories();
 controller.setCategories(categories);
 
-window.getMealsByCategory = async function (name) {
-    let data = await fetcher.fetchMealsByCategory(name)
-    console.log(data)
+window.getMealsByCategory = async function (name = 'Random') {
+    let data = [];
+    if (name === 'Random') {
+        for (let i = 0; i <= 6; i++)
+            data.push(await fetcher.fetchRandom());
+    } else
+        data = await fetcher.fetchMealsByCategory(name)
 
     controller.listMeals(data)
 }
+
+// init
+controller.setFavorites(await fetcher.fetchMealDetailsById([53039, 53016, 52772]));
+getMealsByCategory();
