@@ -1,19 +1,25 @@
 import Meal from './Meal.js';
 
-window.$hamb = document.querySelector('.hamb');
-const $nav = document.querySelector('nav');
-const $logo = document.querySelector('.logo');
-const $searchSVG = document.querySelector('.search-div .icon');
-const $searchBar = document.querySelector('input#searchbar');
-const $categoryList = document.querySelector('nav ul');
-const $favContainer = document.querySelector('.fav-container');
-const $mealsContainer = document.querySelector('#meals-div');
+const $hamb = document.querySelector('.hamb'),
+    $nav = document.querySelector('nav'),
+    $logo = document.querySelector('.logo'),
+    $searchSVG = document.querySelector('.search-div .icon'),
+    /**
+     * @type {HTMLInputElement}
+     */
+    $searchBar = document.querySelector('input#searchbar'),
+    $categoryList = document.querySelector('nav ul'),
+    $favContainer = document.querySelector('.fav-container'),
+    $mealsContainer = document.querySelector('#meals-div');
+
+window.$hamb = $hamb;
 
 export default class Control {
     constructor() {
         $searchSVG.addEventListener('click', () => {
             $logo.classList.toggle('hide');
             $searchBar.classList.toggle('active');
+            $searchBar.focus()
         });
 
         $hamb.addEventListener('click', () => {
@@ -25,8 +31,18 @@ export default class Control {
             e.preventDefault();
             $favContainer.scrollBy({ left: e.deltaY < 0 ? -30 : 30 })
         });
+
+        $searchBar.addEventListener('input', e => {
+            let meals = Array.from(JSON.parse(localStorage.getItem('meals')));
+            let data = meals.filter((meal) => (meal.strMeal.toLowerCase().includes(e.target.value)));
+            this.listMeals(data)
+        });
     }
 
+    /**
+     * 
+     * @param {*} arr
+     */
     async setFavorites(arr) {
         for (let meal of arr) {
             meal = new Meal(meal);
@@ -48,6 +64,9 @@ export default class Control {
         }
     }
 
+    /**
+     * @param {Object[]} categories - categories array
+     */
     async setCategories(categories) {
         let i = 0;
         for (let category of categories) {
@@ -56,7 +75,6 @@ export default class Control {
 
             let button = document.createElement('button');
             button.innerHTML = category['strCategory'];
-            button.id = `category-${i++}`;
             button.setAttribute('onclick', 'getMealsByCategory(this.innerHTML); $hamb.click()')
 
             let li = document.createElement('li');
@@ -66,6 +84,9 @@ export default class Control {
         }
     }
 
+    /**
+     * @param {Object[]} data - an array of meal objects
+     */
     listMeals(data) {
         $mealsContainer.innerHTML = '';
 
