@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+    text-decoration: none;
+    outline: none;
+    list-style: none;
+}
+
+body {
+    background-color: #7ad9f7;
+    width: 100%;
+    height: 100%;
+}
+
+#container {
+    width: 850px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box {
+    display: inline-flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid #000;
+    border-radius: 15px;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.head {
+    height: 10%;
+    background-color: rebeccapurple;
+}
+
+#notes {
+    width: 340px;
+    height: 400px;
+}
+
+#notes .head {
+    text-align: end;
+    padding-right: 10px;
+}
+
+.head button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rebeccapurple;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 300ms background-color ease, 300ms color ease;
+}
+
+.head button:hover {
+    background-color: white;
+    color: rebeccapurple;
+}
+
+.head button i {
+    font-size: 20px;
+}
+
+#noteText {
+    height: 100%;
+    resize: none;
+    padding: 10px 15px;
+    border: none;
+    overflow: auto;
+}
+
+#preview {
+    width: 340px;
+    height: 400px;
+}
+
+#preview .head {
+    font-size: 22px;
+    color: white;
+    text-align: center;
+}
+
+#preview .content {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    padding: 10px 15px;
+}
