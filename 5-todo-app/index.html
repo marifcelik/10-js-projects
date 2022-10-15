@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>todos</h1>
+    <div class="container">
+        <div class="add">
+            <input id="input" onkeyup="if (event.key === 'Enter') button.click()" type="text">
+            <button id="button" onclick="addTodo(input.value); input.value = ''">add</button>
+        </div>
+        <ul id="todos">
+            <li id="1" class="todo-li">
+                <div class="todo-item">
+                    <p>ilk eleman</p>
+                    <div class="controls">
+                        <span class="i-done"><i class="fas fa-check"></i></span>
+                        <span class="i-delete"><i class="fas fa-xmark"></i></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
