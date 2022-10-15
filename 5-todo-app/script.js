@@ -2,30 +2,53 @@ import Todo from './Todo.js';
 
 const $todoList = document.querySelector('ul');
 
-let deneme = new Todo('deneme')
+let todos = [];
 
-let todos = [deneme];
+window.Todo = Todo; // for use in the HTML page
 
-/** @param {HTMLDivElement} item */
+window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('todos'))
+        todos = ((JSON.parse(localStorage.getItem('todos'))));
+
+    todos.forEach(item => {
+        addOnPage(item);
+    });
+})
+
+/** @param {HTMLLIElement} item  - li todo element */
 window.doneTodo = function(item) {
-    item.classList.toggle('done')
+    item.classList.toggle('done');
+    todos.map(element => {
+        if (element.id == item.id)
+            element.done = true;
+    })
+    localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-/** @param {HTMLDivElement} item */
+/** @param {HTMLLIElement} item - li item */
 window.deleteTodo = function(item) {
     item.remove();
+    todos.splice(todos.findIndex(element => element.id == item.id), 1);
+    localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-/** @param {string} text - Todo text from input */
-window.addTodo = function(text) {
-    let li = document.createElement('li');
-    li.classList.add('todo-li');
+/** @param {Todo} item - Todo item - text from input */
+window.addTodo = function(item) {
+    addOnPage(item);
+    todos.push(item);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
 
-    let div = document.createElement('div');
-    div.classList.add('todo-item');
+window.addOnPage = function(item) {
+    let li = document.createElement('li');
+    li.classList.add('todo-item');
+    li.id = item.id;
+
+    if (item.done)
+        li.classList.add('done');
 
     let p = document.createElement('p');
-    p.innerText = text;
+    p.innerText = item.text;
 
     let controlDiv = document.createElement('div');
     controlDiv.classList.add('controls');
@@ -48,13 +71,8 @@ window.addTodo = function(text) {
     controlDiv.appendChild(doneSpan);
     controlDiv.appendChild(deleteSpan);
 
-    div.appendChild(p);
-    div.appendChild(controlDiv);
-
-    li.appendChild(div);
-    li.id = new Date().getTime();
+    li.appendChild(p);
+    li.appendChild(controlDiv);
 
     $todoList.appendChild(li);
-
-    todos.push({ id: li.id, text, done: false });
 }
