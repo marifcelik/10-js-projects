@@ -3,9 +3,9 @@ export default class Todo {
     text;
     done;
 
-    constructor(id = new Date().getTime(), text, done = false) {
-        this.id = id;
+    constructor(text, done = false, id = new Date().getTime()) {
         this.text = text;
+        this.id = id;
         this.done = done;
     }
 }
