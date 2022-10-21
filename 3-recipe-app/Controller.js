@@ -43,7 +43,7 @@ export default class Control {
      * 
      * @param {*} arr
      */
-    async setFavorites(arr) {
+    setFavorites(arr) {
         for (let meal of arr) {
             meal = new Meal(meal);
 
@@ -67,7 +67,7 @@ export default class Control {
     /**
      * @param {Object[]} categories - categories array
      */
-    async setCategories(categories) {
+    setCategories(categories) {
         let i = 0;
         for (let category of categories) {
             if (category['strCategory'] === 'Vegan' || category['strCategory'] === 'Vegetarian')
